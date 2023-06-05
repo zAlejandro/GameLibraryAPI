@@ -10,7 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<gamesdbcontext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GamesConnectionString")));
+builder.Services.AddDbContext<gamesdbcontext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GamesConnectionString"),
+    sqlOptions => sqlOptions.EnableRetryOnFailure()));
 
 var app = builder.Build();
 
